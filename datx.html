@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DATX Academy | بوابة الطالب</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- 1. شاشة الترحيب (Splash Screen) -->
+    <div id="splash-screen">
+        <div class="splash-bg-animated"></div>
+        <div class="splash-content">
+            <div class="splash-logo-container">
+                <div class="splash-logo-wrapper">
+                    <img src="logo.png" alt="DATX" class="splash-logo">
+                </div>
+                <div class="splash-glow"></div>
+            </div>
+            <div class="splash-text-container">
+                <h1 class="splash-text">DATX</h1>
+                <h2 class="splash-subtitle-main">For Training</h2>
+                <p class="splash-tagline">Not just training, but sharing real-life experience</p>
+            </div>
+            <div class="splash-loader">
+                <div class="loader-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. الهيدر (Header) -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <div class="logo-wrapper">
+                    <div class="app-logo-container">
+                        <img src="logo.png" alt="DATX" class="app-logo">
+                    </div>
+                    <div class="app-info">
+                        <h1>DATX</h1>
+                        <span>بوابة الطالب</span>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+        </div>
+    </header>
+
+    <!-- شريط الإعلانات -->
+    <div id="announcement-bar" class="announcement hidden">
+        <div class="announcement-content">
+            <span class="announcement-icon">📢</span>
+            <span id="announcement-text" class="announcement-text"></span>
+            <button class="announcement-close" onclick="closeAnnouncement()">×</button>
+        </div>
+    </div>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="main-content">
+        
+        <!-- صفحة اللوبي (الرئيسية) -->
+        <div id="home" class="view-section active">
+            <div class="welcome-banner">
+                <h2>أهلاً وسهلاً بك! 👋</h2>
+                <p>في بوابة DATX Academy للتعليم والتدريب</p>
+            </div>
+            
+            <div class="card hero-card gradient-card">
+                <div class="card-icon pulse">⏰</div>
+                <h2>تسجيل الحضور اليومي</h2>
+                <p id="attend-status-text" class="status-message">جاري الاتصال بالنظام...</p>
+                
+                <!-- زر التحضير الذكي -->
+                <button id="btn-attendance" class="btn btn-primary btn-disabled" onclick="openAttendance()">
+                    <span class="btn-icon"></span>
+                    <span>جاري التحميل...</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- صفحة الواجبات -->
+        <div id="tasks" class="view-section">
+            <div class="section-title">
+                <h2>📂 ساحة التحديات</h2>
+                <p>قم برفع حلولك وتحدَّ نفسك</p>
+            </div>
+            <div class="card task-card">
+                <div class="card-icon-large">📝</div>
+                <div class="card-header">
+                    <h3>التكاليف والمشاريع</h3>
+                    <span class="badge badge-open">متاح الآن</span>
+                </div>
+                <p>قم برفع ملفات الحل هنا. تأكد من تسمية الملف باسمك بصيغة واضحة.</p>
+                <a id="btn-assignment" href="#" target="_blank" class="btn btn-secondary">رفع التكليف الآن</a>
+            </div>
+        </div>
+
+        <!-- صفحة الخدمات -->
+        <div id="services" class="view-section">
+            <div class="section-title">
+                <h2>🛒 الخدمات والمميزات</h2>
+                <p>استفد من خدماتنا المتكاملة</p>
+            </div>
+            <div class="services-grid">
+                <div class="card service-card cert-card">
+                    <div class="service-icon">🎓</div>
+                    <h3>الشهادات</h3>
+                    <p>طلب إصدار شهادة إتمام دورة معتمدة.</p>
+                    <a id="btn-cert" href="#" target="_blank" class="btn btn-service">طلب شهادة</a>
+                </div>
+                <div class="card service-card powerbi-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Power BI</h3>
+                    <p>حساب طالب للتدريب العملي والمشاريع.</p>
+                    <a id="btn-powerbi" href="#" target="_blank" class="btn btn-service btn-success">طلب حساب</a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- شريط التنقل السفلي -->
+    <nav class="bottom-nav">
+        <div class="nav-item active" onclick="switchTab('home', this)">
+            <span class="icon">🏠</span>
+            <span class="label">الرئيسية</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('tasks', this)">
+            <span class="icon">⚡</span>
+            <span class="label">الواجبات</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('services', this)">
+            <span class="icon">🛒</span>
+            <span class="label">الخدمات</span>
+        </div>
+    </nav>
+
+    <!-- نافذة المراقبة الذكية -->
+    <div id="monitor-modal" class="modal">
+        <div class="modal-content">
+            <div class="spinner-ring"></div>
+            <h3>النافذة مفتوحة...</h3>
+            <p>يرجى تعبئة البيانات في النافذة المنبثقة.</p>
+            <p class="sub-text">ستغلق النافذة تلقائياً عند النجاح.</p>
+            <button onclick="forceCloseMonitor()" class="btn-text">إغلاق يدوي</button>
+        </div>
+    </div>
+
+    <!-- إشعار (Toast) -->
+    <div id="toast" class="toast">تمت العملية بنجاح! 🎉</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
